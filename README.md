@@ -12,7 +12,7 @@ npm install element-ui-area -S
 
 ## 使用方式
 
-> 
+> 项目依赖于[Element-UI](https://github.com/ElemeFE/element)，您需要先进行引入
 
 ### 引入
 ```javascript
