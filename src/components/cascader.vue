@@ -31,10 +31,10 @@ export default {
   name: COMPONENT_NAME,
   mixins: [Mixins],
   props: {
-      placeholder: {
-          type: String,
-          default: '请选择地区'
-      }
+    placeholder: {
+      type: String,
+      default: '请选择地区'
+    }
   },
   watch: {
     value: {
