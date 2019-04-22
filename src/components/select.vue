@@ -12,7 +12,8 @@
                 @change="__onAreaChange(model[index], index + 1)"
                 @blur="__onBlur"
                 @focus="__onFocus"
-                @clear="__onClear(index + 1)">
+                @clear="__onClear(index + 1)"
+                style="width:100%;">
                 <el-option v-for="area in option" :label="area.label" :value="area.value" :key="area.key"></el-option>
             </el-select>
         </el-col>
@@ -156,9 +157,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.china-area-selector .el-select{
-    width: 100%;
-}
-</style>

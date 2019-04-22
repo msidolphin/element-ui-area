@@ -17,7 +17,7 @@ const components = {
 
 function install (Vue, options = {}) {
   for (let name in components) {
-    if (typeof components[name] === 'function') components[name].install(Vue, options)
+    if (typeof components[name].install === 'function') components[name].install(Vue, options)
     else Vue.component(components[name], options)
   }
 }

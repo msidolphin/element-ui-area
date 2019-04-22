@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <!-- 级联 -->
-    <Cascader v-model="value" :level="3" @change="onChange"/>
+    <area-cascader v-model="value" :level="3" @change="onChange"/>
     <el-button size="small" @click="value = value2">广东省广州市荔湾区</el-button><el-button size="small" @click="value = value1">广东省深圳市南山区</el-button>
     <div style="width:600px;margin:10px auto;">
-      <Selector v-model="value3" :level="1"/>
+      <area-select v-model="value3" :level="1"/>
       <div style="margin-bottom:10px;"></div>
-      <Selector v-model="value4" :level="2"/>
+      <area-select v-model="value4" :level="2"/>
       <div style="margin-bottom:10px;"></div>
-      <Selector v-model="value5" :level="3"/>
+      <area-select v-model="value5" :level="3"/>
     </div>
   </div>
 </template>
