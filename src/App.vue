@@ -8,7 +8,7 @@
       <div style="margin-bottom:10px;"></div>
       <area-select v-model="value4" :level="2"/>
       <div style="margin-bottom:10px;"></div>
-      <area-select v-model="value5" :level="3"/>
+      <area-select v-model="value5" @change="onChange" :level="3"/>
     </div>
   </div>
 </template>

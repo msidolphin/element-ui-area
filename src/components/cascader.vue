@@ -40,7 +40,8 @@ export default {
     value: {
       immediate: true,
       deep: true,
-      handler (val) {
+      handler (val, old) {
+        if (val === old) return
         if (val) {
           // 这里element-ui(2.7.2)有一个bug，默认值的层级错误会导致第一次选中值错误的问题，解决截取默认值
           if (val.length > this.level) this.model = val.slice(0, this.level)
@@ -54,6 +55,8 @@ export default {
       handler (val) {
         if (val) {
           this.$emit('input', val)
+          // 处理清空清空
+          if (!val.length) this.__change(val)
         }
       }
     }

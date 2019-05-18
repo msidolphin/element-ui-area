@@ -56,7 +56,8 @@ export default {
     value: {
       immediate: true,
       deep: true,
-      handler (val) {
+      handler (val, old) {
+        if (old === val) return
         if (val) {
           if (val.length > this.level) this.model = val.slice(0, this.level)
           else this.model = val
@@ -132,6 +133,7 @@ export default {
     },
     __onClear (level) {
       this.__clearSelected(level - 1, true)
+      this.__change()
     },
     __clearSelected (level, clearOption = false) {
       for (let i = level + 1; i < this.level; ++i) {
