@@ -2,8 +2,6 @@
 
 > 基于Vue和ElementUI的中国行政区划选择器
 
-数据来源：[area-data](https://github.com/dwqs/area-data)
-
 ## 安装
 
 ```bash
@@ -85,6 +83,7 @@ export default {
 | noDataText | String | 无数据时展现的文字 | 无数据 |
 | clearable | Boolean | 是否支持清空 | true |
 | placeholder | String | 占位符 | 请选择地区 |
+| immediate | Boolean | 是否立即触发change事件 | true |
 
 ### area-select
 
@@ -100,6 +99,7 @@ export default {
 | clearable | Boolean | 是否支持清空 | true |
 | placeholder | Array | 占位符 | ['请选择省', '请选择市', '请选择区县', '请选择街道'] |
 |filterable | Boolean | 是否支持搜索 | false |
+| immediate | Boolean | 是否立即触发change事件 | true |
 
 ## 事件
 

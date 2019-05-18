@@ -43,6 +43,10 @@ export default {
     clearable: {
       type: Boolean,
       default: true
+    },
+    immediate: {
+      type: Boolean,
+      default: true
     }
   },
   watch: {

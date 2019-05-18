@@ -22,8 +22,8 @@
 
 <script>
 import Mixins from './mixins'
-import areaData from 'area-data'
-const dataSource = JSON.parse(JSON.stringify(areaData.pcaa))
+import areaData from './area.json'
+const dataSource = JSON.parse(JSON.stringify(areaData))
 // 数据源不支持街道
 const PLACEHOLDER = ['请选择省', '请选择市', '请选择区县', '请选择街道']
 const CN = '86'
@@ -92,7 +92,7 @@ export default {
       for (let i = 0; i < this.model.length; ++i) {
         this.__initOption(this.model[i], i + 1)
       }
-      this.__change()
+      if (this.immediate && this.model && this.model.length) this.__change()
     },
     __initProvinces () {
       // 获取省级
@@ -120,7 +120,6 @@ export default {
       }
     },
     __onAreaChange (code, level) {
-      // debugger
       if (!code) {
         this.model[level - 1] = ''
         return

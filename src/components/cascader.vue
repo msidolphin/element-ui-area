@@ -16,8 +16,8 @@
 
 <script>
 import Mixins from './mixins'
-import areaData from 'area-data'
-const dataSource = JSON.parse(JSON.stringify(areaData.pcaa))
+import areaData from './area.json'
+const dataSource = JSON.parse(JSON.stringify(areaData))
 const CN = '86'
 const COMPONENT_NAME = 'area-cascader'
 /**
@@ -54,7 +54,6 @@ export default {
       handler (val) {
         if (val) {
           this.$emit('input', val)
-          this.__change(val)
         }
       }
     }
@@ -67,7 +66,7 @@ export default {
           this.__setChildren(this.model[i], i + 1)
         }
       }
-      this.__change(this.model)
+      if (this.immediate && this.model && this.model.length) this.__change(this.model)
     },
     __initProvinces () {
       if (this.options.length) return
