@@ -17,7 +17,6 @@
 <script>
 import Mixins from './mixins'
 import areaData from './area.json'
-const dataSource = JSON.parse(JSON.stringify(areaData))
 const CN = '86'
 const COMPONENT_NAME = 'area-cascader'
 /**
@@ -63,6 +62,11 @@ export default {
   },
   methods: {
     __initOptionsByValue () {
+      if (this.dataSource) {
+        this.$dataSource = JSON.parse(JSON.stringify(this.dataSource))
+      } else {
+        this.$dataSource = JSON.parse(JSON.stringify(areaData))
+      }
       this.__initProvinces()
       if (this.model.length) {
         for (let i = 0; i < this.model.length; ++i) {
@@ -74,16 +78,16 @@ export default {
     __initProvinces () {
       if (this.options.length) return
       // 获取省级
-      Object.keys(dataSource[CN]).forEach(code => {
+      Object.keys(this.$dataSource[CN]).forEach(code => {
         if (this.level > 1) {
           this.options.push({
-            label: dataSource[CN][code],
+            label: this.$dataSource[CN][code],
             value: code,
             children: []
           })
         } else {
           this.options.push({
-            label: dataSource[CN][code],
+            label: this.$dataSource[CN][code],
             value: code
           })
         }
@@ -125,12 +129,16 @@ export default {
       // if ($code) return
       let area = this.__getAreaItemByCode(this.options, $code)
       if (level >= this.level) return
-      if (!area) throw new Error(`找不到对应的地区编号: ${$code}`)
+      if (!area) {
+        console.error(this.$dataSource)
+        throw new Error(`找不到对应的地区编号: ${$code}`)
+      }
       if (!area.children) return
       if (area.children && area.children.length) return
-      // console.log(dataSource[$code])
-      let childs = dataSource[$code]
-      if (!childs) throw new Error('数据源暂不支持该层级的数据')
+      let childs = this.$dataSource[$code]
+      if (!childs) {
+        throw new Error('数据源暂不支持该层级的数据')
+      }
       Object.keys(childs).forEach(code => {
         if (level + 1 < this.level) {
           area.children.push({

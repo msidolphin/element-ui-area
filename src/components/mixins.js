@@ -47,7 +47,8 @@ export default {
     immediate: {
       type: Boolean,
       default: true
-    }
+    },
+    dataSource: Object // 数据源
   },
   watch: {
     level (val) {
@@ -60,7 +61,8 @@ export default {
     return {
       model: [],
       options: [],
-      text: []
+      text: [],
+      $dataSource: undefined
     }
   },
   methods: {

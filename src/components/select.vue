@@ -23,7 +23,6 @@
 <script>
 import Mixins from './mixins'
 import areaData from './area.json'
-const dataSource = JSON.parse(JSON.stringify(areaData))
 // 数据源不支持街道
 const PLACEHOLDER = ['请选择省', '请选择市', '请选择区县', '请选择街道']
 const CN = '86'
@@ -87,6 +86,11 @@ export default {
     },
     __initOptionsByValue () {
       if (!this.init) {
+        if (this.dataSource) {
+          this.$dataSource = JSON.parse(JSON.stringify(this.dataSource))
+        } else {
+          this.$dataSource = JSON.parse(JSON.stringify(areaData))
+        }
         this.__initData()
         this.__initProvinces()
       }
@@ -98,9 +102,9 @@ export default {
     __initProvinces () {
       // 获取省级
       let provinces = []
-      Object.keys(dataSource[CN]).forEach(code => {
+      Object.keys(this.$dataSource[CN]).forEach(code => {
         provinces.push({
-          label: dataSource[CN][code],
+          label: this.$dataSource[CN][code],
           value: code
         })
       })
@@ -108,7 +112,7 @@ export default {
     },
     __initOption (code, level) {
       if (level >= this.level) return
-      let childs = dataSource[code]
+      let childs = this.$dataSource[code]
       if (childs) {
         let newChilds = []
         Object.keys(childs).forEach($code => {
