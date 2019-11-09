@@ -22,7 +22,6 @@
 
 <script>
 import Mixins from './mixins'
-import areaData from './area.json'
 // 数据源不支持街道
 const PLACEHOLDER = ['请选择省', '请选择市', '请选择区县', '请选择街道']
 const CN = '86'
@@ -86,11 +85,7 @@ export default {
     },
     __initOptionsByValue () {
       if (!this.init) {
-        if (this.dataSource) {
-          this.$dataSource = JSON.parse(JSON.stringify(this.dataSource))
-        } else {
-          this.$dataSource = JSON.parse(JSON.stringify(areaData))
-        }
+        this.__initDataSource()
         this.__initData()
         this.__initProvinces()
       }

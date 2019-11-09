@@ -1,3 +1,5 @@
+import areaData from './area.json'
+
 function oneOf (val, values = []) {
   return values.indexOf(val) !== -1
 }
@@ -71,6 +73,15 @@ export default {
     },
     __onFocus (e) {
       this.$emit('focus', e)
+    },
+    __initDataSource () {
+      if (this.dataSource) {
+        this.$dataSource = JSON.parse(JSON.stringify(this.dataSource))
+      } else if (this.$ELEMENT_UI_AREA_COMPONENT && this.$ELEMENT_UI_AREA_COMPONENT.dataSource) {
+        this.$dataSource = JSON.parse(JSON.stringify(this.$ELEMENT_UI_AREA_COMPONENT.dataSource))
+      } else {
+        this.$dataSource = JSON.parse(JSON.stringify(areaData))
+      }
     }
   }
 }

@@ -15,13 +15,17 @@ npm install element-ui-area -S
 ### 引入
 ```javascript
 import AreaComponent from 'element-ui-area'
-Vue.use(AreaComponent)
+Vue.use(AreaComponent, {})
 
 // or
 import {Cascader, Select} from 'element-ui-area'
-Vue.use(Cascader)
-Vue.use(Select)
+Vue.use(Cascader, {})
+Vue.use(Select, {})
 ```
+#### 配置项
+| 属性 | 类型 | 说明 | 默认值 |
+| :------ | :------ | :------ | --- |
+| dataSource | Object | 数据源 | - |
 
 ### 使用
 

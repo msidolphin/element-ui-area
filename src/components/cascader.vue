@@ -16,7 +16,6 @@
 
 <script>
 import Mixins from './mixins'
-import areaData from './area.json'
 const CN = '86'
 const COMPONENT_NAME = 'area-cascader'
 /**
@@ -62,11 +61,7 @@ export default {
   },
   methods: {
     __initOptionsByValue () {
-      if (this.dataSource) {
-        this.$dataSource = JSON.parse(JSON.stringify(this.dataSource))
-      } else {
-        this.$dataSource = JSON.parse(JSON.stringify(areaData))
-      }
+      this.__initDataSource()
       this.__initProvinces()
       if (this.model.length) {
         for (let i = 0; i < this.model.length; ++i) {

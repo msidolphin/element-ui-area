@@ -2,12 +2,22 @@ import packageJson from '../../package.json'
 import Cascader from './cascader'
 import Select from './select'
 
-Cascader.install = Vue => {
-  Vue.component(Cascader.name, Cascader)
+const mixin = (Vue, options = {}) => {
+  Vue.prototype.$ELEMENT_UI_AREA_COMPONENT = {
+    dataSource: options.dataSource
+  }
 }
 
-Select.install = Vue => {
-  Vue.component(Select.name, Select)
+Cascader.install = (Vue, options = {}) => {
+  let prefix = options.prefix ? options.prefix : ''
+  Vue.component(`${prefix ? prefix + '-' : ''}${Cascader.name}`, Cascader)
+  mixin(Vue, options)
+}
+
+Select.install = (Vue, options = {}) => {
+  let prefix = options.prefix ? options.prefix : ''
+  Vue.component(`${prefix ? prefix + '-' : ''}${Select.name}`, Select)
+  mixin(Vue, options)
 }
 
 const components = {
@@ -16,9 +26,16 @@ const components = {
 }
 
 function install (Vue, options = {}) {
+  let prefix = options.prefix ? options.prefix : ''
   for (let name in components) {
-    if (typeof components[name].install === 'function') components[name].install(Vue, options)
-    else Vue.component(components[name], options)
+    let componentName = name
+    if (components[name].name) {
+      componentName = components[name].name
+    }
+    Vue.component(`${prefix ? prefix + '-' : ''}${componentName}`, components[name])
+  }
+  Vue.prototype.$ELEMENT_UI_AREA_COMPONENT = {
+    dataSource: options.dataSource
   }
 }
 
