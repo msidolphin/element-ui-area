@@ -8,6 +8,8 @@
         :no-data-text="noDataText"
         :clearable="clearable"
         :placeholder="placeholder"
+        :filterable="filterable"
+        :show-all-levels="showAllLevels"
         @active-item-change="__onActiveItemChange"
         @blur="__onBlur"
         @focus="__onFocus">
@@ -32,6 +34,10 @@ export default {
     placeholder: {
       type: String,
       default: '请选择地区'
+    },
+    showAllLevels: {
+      type: Boolean,
+      default: true
     }
   },
   watch: {
